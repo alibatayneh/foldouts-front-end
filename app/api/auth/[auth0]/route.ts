@@ -1,13 +1,14 @@
 import { handleAuth, handleLogin, handleLogout } from '@auth0/nextjs-auth0';
 import { authConnectionTypes } from '@/utils/authConnectionTypeState';
+import { NextRequest } from 'next/server';
 require('dotenv').config({ path: '@/.env.local' });
 
 function getAuthConnectionState(route) {
   const regex = /^\/([^\/]+)/;
   let match = regex.exec(route);
-  match = match ? match[1] : null;
+  const matchString = match ? match[1] : null;
 
-  switch (match) {
+  switch (matchString) {
     case "admin":
       return authConnectionTypes.email;
     case "brand-user":
@@ -24,15 +25,14 @@ const audience = process.env.AUTH0_AUDIENCE;
 const scope = process.env.AUTH0_SCOPE;
 
 export const GET = handleAuth({
-  login: handleLogin((req, res) => {
-      const state = getAuthConnectionState(req.nextUrl.searchParams.get('returnTo'));
-      console.log(state);
-      console.log(req.nextUrl.searchParams)
+  login: handleLogin((req) => {
+      const state = getAuthConnectionState((req as NextRequest).nextUrl.searchParams.get('returnTo'));
       let authBody = {
         authorizationParams: {
          connection: state,
          audience: audience,
-         scope: scope
+         scope: scope,
+         userType: null
         }
       };
 

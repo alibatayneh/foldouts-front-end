@@ -2,7 +2,6 @@ import React from 'react';
 import { getSession } from '@auth0/nextjs-auth0';
 import Highlight from '@/components/Highlight';
 import withPageAuth from '@/components/withPageAuth';
-import { setAuthConnectionType, authConnectionTypes } from '@/utils/authConnectionTypeState'
 import CreateProduct from '@/components/CreateProduct';
 
 

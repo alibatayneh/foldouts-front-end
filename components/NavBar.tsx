@@ -20,6 +20,7 @@ import type { CustomFlowbiteTheme } from "flowbite-react";
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 
+// @ts-ignore
 const customTheme: CustomFlowbiteTheme['navBar'] = {
     "link": {
       "base": "block py-2 pl-3 pr-4 md:p-0",
@@ -60,11 +61,13 @@ const NavBar = () => {
       setActiveButton(active);
       router.push(route);
     };
-
+    // @ts-ignore
     const navLinksForCurrentUser = () => {
       switch (currentUserType()) {
+          // @ts-ignore
           case 'admin':
             return adminLinks;
+          // @ts-ignore
           case 'user':
             return userLinks;
           default:
@@ -75,11 +78,11 @@ const NavBar = () => {
     const currentUserType = () => {
       const regex = /^\/([^\/]+)/;
       let match = regex.exec(usePathname());
-      match = match ? match[1] : null;
+      const matchString = match ? match[1] : null;
       // match is either "admin", "brand-user", "user",
       // or null in case of invalid routes, which we wont render anyway.
 
-      return match;
+      return matchString;
     };
     const [activeButton, setActiveButton] = useState(navLinksForCurrentUser()[0]['name']);
 

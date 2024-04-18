@@ -5,15 +5,12 @@ import { useFormState, useFormStatus } from 'react-dom';
 import React, { useEffect, useRef, useState } from 'react';
 import { PACKAGE_VERSION } from '@uploadcare/blocks';
 import { getSession } from '@auth0/nextjs-auth0';
-import Highlight from '@/components/Highlight';
 import withClientPageAuth from '@/components/withClientPageAuth';
-import { setAuthConnectionType, authConnectionTypes } from '@/utils/authConnectionTypeState'
 import CreateProduct from '@/components/CreateProduct';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Loading from '@/components/Loading';
 import { Card, TextInput, Textarea } from "flowbite-react";
 import * as LR from "@uploadcare/blocks";
-import blocksStyles from '@uploadcare/blocks/web/lr-file-uploader-regular.min.css?url';
 import { createNewProduct } from '@/actions/actions';
 import { useRouter, usePathname } from 'next/navigation';
 LR.registerBlocks(LR);
@@ -85,7 +82,7 @@ function CreateProductPage() {
       {isLoading && <Loading />}
       {user && (
       <div className="flex mb-5 justify-center">
-        {user.user_roles.includes("ADMIN") ? (
+        {(user.user_roles as string[]).includes("ADMIN") ? (
         <Card className="w-full mx-2 md:w-3/5">
               <section className="h-full w-full">
                   <form action={formAction}>
@@ -229,8 +226,8 @@ function CreateProductPage() {
 
         ) : (
           // If user doesn't have ADMIN role, render a "Not Authorized" message
-          <div class="p-4 my-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-            <span class="font-medium">You are not authorized to view this page!</span>
+          <div className="p-4 my-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span className="font-medium">You are not authorized to view this page!</span>
           </div>
         )}
       </div>
