@@ -1,6 +1,5 @@
 "use client";
 
-require('dotenv').config({ path: '@/.env.local' });
 import { useFormState, useFormStatus } from 'react-dom';
 import React, { useEffect, useRef, useState } from 'react';
 import { PACKAGE_VERSION } from '@uploadcare/blocks';
