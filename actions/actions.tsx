@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export async function createNewProduct(product) {
     try {
-        const apiResponse = await axios.post('http://localhost:8080/v1/products/', {
+        const apiResponse = await axios.post('https://foldouts.onrender.com/v1/products/', {
           data: product
         });
         if (apiResponse.status === 200) {
