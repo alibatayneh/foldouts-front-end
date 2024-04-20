@@ -1,6 +1,16 @@
 const path = require('path');
 
 module.exports = {
+    images: {
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'ucarecdn.com',
+            port: '',
+            pathname: '/**',
+          },
+    ],
+  },
   env: {
     UPLOADCARE_PUBKEY: process.env.UPLOADCARE_PUBKEY, // pulls from .env file
   },
