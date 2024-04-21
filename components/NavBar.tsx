@@ -94,7 +94,7 @@ const NavBar = () => {
             </span>
           </Navbar.Brand>
           <div className="flex md:order-2">
-            {currentUserType() === 'user' && <Button className="mr-10">Get started</Button>}
+            {currentUserType() === 'user' && <Button className="mr-10 hidden">Get started</Button>}
             <Dropdown
               arrowIcon={true}
               inline
@@ -103,9 +103,11 @@ const NavBar = () => {
               }
             >
               <Dropdown.Header>
-                <span className="block truncate text-sm font-medium">{isLoading ? "Loading.." : user.name}</span>
+                <span className="block truncate text-sm font-medium">{isLoading ? "Loading.." : user?.name}</span>
               </Dropdown.Header>
-              <Dropdown.Item>Dashboard</Dropdown.Item>
+              <Dropdown.Item>
+                <Link href="/user/wish-list">Wish List</Link>
+              </Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item>
                   <Link href="/logout">Sign Out</Link>
