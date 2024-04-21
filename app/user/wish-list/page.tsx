@@ -38,7 +38,8 @@ const UserWishListPage = () => {
     <>
       <div className="mb-5">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4 place-items-center">
-        {Object.entries(products).map(([productId, product]) => (
+        {products && typeof products === 'object'
+            && Object.entries(products).map(([productId, product]) => (
             <ProductCard
               key={productId}
               product={product}
