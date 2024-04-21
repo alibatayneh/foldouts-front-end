@@ -12,7 +12,8 @@ module.exports = {
     ],
   },
   env: {
-    UPLOADCARE_PUBKEY: process.env.UPLOADCARE_PUBKEY, // pulls from .env file
+        UPLOADCARE_PUBKEY: process.env.UPLOADCARE_PUBKEY, // pulls from .env file
+        BACKEND_URL: process.env.BACKEND_URL, // pulls from .env file
   },
   poweredByHeader: false,
   webpack: (config) => {

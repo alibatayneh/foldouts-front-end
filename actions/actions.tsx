@@ -1,10 +1,10 @@
 "use server";
 
 import axios from 'axios';
-
+const backendUrl = process.env.BACKEND_URL;
 export async function createNewProduct(product) {
     try {
-        const apiResponse = await axios.post('https://foldouts.onrender.com/v1/products/', {
+        const apiResponse = await axios.post(`${backendUrl}/v1/products/`, {
           data: product
         });
         if (apiResponse.status === 200) {
@@ -18,7 +18,7 @@ export async function createNewProduct(product) {
 
 export async function getUserWishList(phoneNumber) {
     try {
-        const apiResponse = await axios.get(`http://localhost:8080/v1/customers/wish-list/${phoneNumber}`);
+        const apiResponse = await axios.get(`${backendUrl}/v1/customers/wish-list/${phoneNumber}`);
         if (apiResponse.status === 200) {
             return {products: apiResponse.data}
         }
@@ -30,7 +30,7 @@ export async function getUserWishList(phoneNumber) {
 
 export async function removeProductFromWishList(phoneNumber, productId) {
     try {
-        const apiResponse = await axios.put(`http://localhost:8080/v1/customers/wish-list/${phoneNumber}`, {
+        const apiResponse = await axios.put(`${backendUrl}/v1/customers/wish-list/${phoneNumber}`, {
             productId: productId
         });
         if (apiResponse.status === 200) {

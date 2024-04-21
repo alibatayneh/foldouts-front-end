@@ -103,7 +103,7 @@ const NavBar = () => {
               }
             >
               <Dropdown.Header>
-                <span className="block truncate text-sm font-medium">{isLoading ? "Loading.." : user.name}</span>
+                <span className="block truncate text-sm font-medium">{isLoading ? "Loading.." : user?.name}</span>
               </Dropdown.Header>
               <Dropdown.Item>
                 <Link href="/user/wish-list">Wish List</Link>
